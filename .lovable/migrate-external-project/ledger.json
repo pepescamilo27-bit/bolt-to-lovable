@@ -1,0 +1,79 @@
+[
+  {
+    "capability": "code",
+    "source": "Bolt React+Vite (react-router-dom)",
+    "outcome": "migrate",
+    "status": "verified",
+    "next_action": "none"
+  },
+  {
+    "capability": "schema",
+    "source": "supabase/migrations (opportunities, proposals, user_preferences, ai_usage)",
+    "outcome": "migrate",
+    "status": "verified",
+    "next_action": "none"
+  },
+  {
+    "capability": "records",
+    "source": "Bolt Supabase database",
+    "outcome": "migrate",
+    "status": "pending",
+    "next_action": "User exports table CSVs"
+  },
+  {
+    "capability": "auth identities",
+    "source": "Supabase Auth email/password",
+    "outcome": "migrate",
+    "status": "pending",
+    "next_action": "User exports users (email + original ID); import, map IDs, users set password via 'Esqueci minha senha / primeiro acesso'"
+  },
+  {
+    "capability": "authorization",
+    "source": "RLS auth.uid() = user_id",
+    "outcome": "migrate",
+    "status": "verified",
+    "next_action": "none"
+  },
+  {
+    "capability": "uploaded file bytes",
+    "source": "none detected",
+    "outcome": "none",
+    "status": "verified",
+    "next_action": "none"
+  },
+  {
+    "capability": "AI assistant (Gemini via edge function assistant-ai)",
+    "source": "GEMINI_API_KEY",
+    "outcome": "preserve provider, move to server function",
+    "status": "pending",
+    "next_action": "Add GEMINI_API_KEY, then test an AI analysis"
+  },
+  {
+    "capability": "public endpoints/webhooks/schedules",
+    "source": "none detected",
+    "outcome": "none",
+    "status": "verified",
+    "next_action": "none"
+  },
+  {
+    "capability": "secrets",
+    "source": "GEMINI_API_KEY",
+    "outcome": "request via secure form",
+    "status": "pending",
+    "next_action": "add_secret"
+  },
+  {
+    "capability": "cutover",
+    "source": "Bolt hosting",
+    "outcome": "publish in Lovable",
+    "status": "pending",
+    "next_action": "User publishes"
+  },
+  {
+    "capability": "verification",
+    "source": "-",
+    "outcome": "-",
+    "status": "pending",
+    "next_action": "Core sign-in and create/read verified; AI and imported-user first login pending"
+  }
+]

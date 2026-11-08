@@ -1,23 +1,23 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { AppShell } from "@/components/nexvya/AppShell";
+import { StoreGate } from "@/components/nexvya/common";
+import { requireUser } from "@/lib/nexvya/guard";
+import { Overview } from "@/views/Overview";
 
-// The home route ships no og:image, so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  ssr: false,
+  beforeLoad: requireUser,
+  head: () => ({
+    meta: [
+      { title: "Visão geral — Nexvya" },
+      { name: "description", content: "Seu pipeline comercial, ações do dia e oportunidades em um só lugar." },
+      { property: "og:title", content: "Nexvya — Inteligência comercial" },
+      { property: "og:description", content: "Organize negociações, recupere oportunidades esquecidas e saiba qual é sua próxima ação." },
+    ],
+  }),
+  component: () => (
+    <AppShell>
+      <StoreGate>{(s) => <Overview s={s} />}</StoreGate>
+    </AppShell>
+  ),
 });
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}

@@ -28,3 +28,10 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+
+- Ported Bolt screens live in `src/views/` and use string paths through `src/lib/nexvya/nav.tsx`; add any new path there so links stay typed.
+- Signed-in pages live under `src/routes/_authenticated/` (client-only gate); `/` uses the same `requireUser` gate because it must stay in `src/routes/index.tsx`.
+- App data is held in the client store `src/lib/nexvya/store.ts`, loaded per user from Cloud tables protected by `auth.uid() = user_id` policies.
+- The AI assistant runs in the `runAssistantAi` server function (calls Google Gemini with the user's key) with a per-user daily quota consumed via the service-role-only `consume_ai_quota` function.
