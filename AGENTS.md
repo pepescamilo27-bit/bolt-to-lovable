@@ -35,3 +35,4 @@ use the editor.
 - Signed-in pages live under `src/routes/_authenticated/` (client-only gate); `/` uses the same `requireUser` gate because it must stay in `src/routes/index.tsx`.
 - App data is held in the client store `src/lib/nexvya/store.ts`, loaded per user from Cloud tables protected by `auth.uid() = user_id` policies.
 - The AI assistant runs in the `runAssistantAi` server function (calls Google Gemini with the user's key) with a per-user daily quota consumed via the service-role-only `consume_ai_quota` function.
+- Read the Gemini credential inside the server handler, accepting both `GEMINI_API_KEY` and the existing `GEMINIAPIKEY` name so existing Secrets do not need replacement.

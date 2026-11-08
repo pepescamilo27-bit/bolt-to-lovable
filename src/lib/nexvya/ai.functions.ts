@@ -22,7 +22,7 @@ export const runAssistantAi = createServerFn({ method: "POST" })
       const payload = parsePayload(data);
       if (!payload) return fail("invalid_request", "Dados da solicitação inválidos.");
 
-      const apiKey = process.env["GEMINI_API_KEY"];
+      const apiKey = process.env["GEMINI_API_KEY"] || process.env["GEMINIAPIKEY"];
       if (!apiKey) {
         return fail(
           "ai_not_configured",
